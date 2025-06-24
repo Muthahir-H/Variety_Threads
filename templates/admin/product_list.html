@@ -1,0 +1,98 @@
+{% extends 'admin/admin_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'customer/style.css' %}" media="all" />
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-start mb-4">
+    <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a>
+</div>
+
+    <div class="row">
+      
+        {% for product in page_obj %}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+          
+            <div class="product-list product-grid">
+                <div class="product-list-image">
+                    {% if product.image %}
+                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; max-height: 200px;">
+                    {% else %}
+                        <img class="img-fluid" src="{% static 'images/no-image.png' %}" alt="No Image">
+                    {% endif %}
+                </div>
+                <div class="product-list-details">
+                    <div class="product-list-info">
+                        <div class="product-list-title">
+                            <h5><a href="#">{{ product.name }}</a></h5>
+                        </div>
+                    </div>
+                    <div class="product-list-actions">
+                        <a href="{% url 'update_product' product.id %}" class="text-warning me-2" title="Edit">
+                            <i class="fas fa-edit" style="font-size: 25px; margin-right: 10px;"></i>
+                        </a>
+                        <a href="{% url 'delete_product' product.id %}" class="text-danger me-2" title="Delete">
+                            <i class="far fa-trash-alt" style="font-size: 25px; margin-right: 10px;"></i>
+                        </a>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination controls -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&raquo;</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+</div>
+
+{% if messages %}
+				{% for message in messages %}
+					<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+					<script>
+					   Swal.fire({
+								icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
+								title: '{% if message.tags == "success" %}Success{% elif message.tags == "error" %}Error{% endif %}',
+								text: '{{ message }}',
+							});
+					</script>
+				{% endfor %}
+			{% endif %}
+
+{% endblock %}

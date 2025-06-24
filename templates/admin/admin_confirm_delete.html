@@ -1,0 +1,35 @@
+{% extends 'admin/admin_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-body text-center">
+            <h4 class="card-title mb-4 text-danger">Delete Confirmation</h4>
+            <p class="card-text">Are you sure you want to delete <strong>"{{ product.name }}"</strong>?</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger me-2">Yes, Delete</button>
+                <a href="{% url 'product_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
+                title: '{{ message.tags|capfirst }}',
+                text: '{{ message }}',
+                timer: 2500,
+                showConfirmButton: false
+            });
+        </script>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
