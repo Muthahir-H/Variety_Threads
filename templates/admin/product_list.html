@@ -13,34 +13,39 @@
     <div class="row">
       
         {% for product in page_obj %}
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-          
-            <div class="product-list product-grid">
-                <div class="product-list-image">
-                    {% if product.image %}
-                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; max-height: 200px;">
-                    {% else %}
-                        <img class="img-fluid" src="{% static 'images/no-image.png' %}" alt="No Image">
-                    {% endif %}
-                </div>
-                <div class="product-list-details">
-                    <div class="product-list-info">
-                        <div class="product-list-title">
-                            <h5><a href="#">{{ product.name }}</a></h5>
-                        </div>
-                    </div>
-                    <div class="product-list-actions">
-                        <a href="{% url 'update_product' product.id %}" class="text-warning me-2" title="Edit">
-                            <i class="fas fa-edit" style="font-size: 25px; margin-right: 10px;"></i>
-                        </a>
-                        <a href="{% url 'delete_product' product.id %}" class="text-danger me-2" title="Delete">
-                            <i class="far fa-trash-alt" style="font-size: 25px; margin-right: 10px;"></i>
-                        </a>
-                    </div>
-                </div>
-        
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+          <div class="product-list product-grid p-2 border rounded w-100 h-100 d-flex flex-column justify-content-between">
+
+            <!-- Image Section -->
+            <div class="product-list-image text-center mb-2">
+              {% if product.image %}
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; max-height: 200px;">
+              {% else %}
+                <img class="img-fluid" src="{% static 'images/no-image.png' %}" alt="No Image">
+              {% endif %}
             </div>
+
+            <!-- Name Section -->
+            <div class="product-list-title text-center mb-2">
+              <h5 class="mb-1">
+                <a href="#" class="text-dark text-decoration-none">{{ product.name }}</a>
+              </h5>
+            </div>
+
+            <!-- Action Buttons at Bottom -->
+            <div class="d-flex justify-content-between align-items-center mt-auto px-2 pt-2 border-top">
+              <a href="{% url 'update_product' product.id %}" class="text-warning" title="Edit">
+                <i class="la la-edit" style="font-size: 25px;"></i>
+              </a>
+              <a href="{% url 'delete_product' product.id %}" class="text-danger" title="Delete" onclick="return confirm('Are you sure?');">
+                <i class="la la-trash" style="font-size: 25px;"></i>
+              </a>
+            </div>
+
+          </div>
         </div>
+
+
         {% endfor %}
     </div>
 

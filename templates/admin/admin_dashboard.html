@@ -37,14 +37,21 @@
 					</form>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="{% static  'admin/img/profile.jpg' %}" alt="user-img" width="36" class="img-circle"><span >Hizrian</span></span> </a>
+							<a class="dropdown-toggle profile-pic d-flex align-items-center" data-toggle="dropdown" href="#" aria-expanded="false">
+							<span class="d-inline-flex align-items-center justify-content-center bg-secondary text-white rounded-circle me-2" style="width: 36px; height: 36px;">
+								<i class="la la-user" style="font-size: 18px;"></i>
+							</span>
+							<span>Ahammed Sha</span>
+							</a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
-										<div class="u-img"><img src="{% static  'admin/img/profile.jpg' %}" alt="user"></div>
+										<div class="u-img d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white" style="width: 50px; height: 50px;">
+											<i class="la la-user" style="font-size: 24px;"></i>
+										</div>
 										<div class="u-text">
-											<h4>Hizrian</h4>
-											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<h4>Ahammed Sha</h4>
+										
 										</div>
 									</li>
 								</ul>
@@ -57,20 +64,19 @@
 			<div class="sidebar">
 				<div class="scrollbar-inner sidebar-wrapper">
 					<div class="user">
-						<div class="photo">
-							<img src="{% static  'admin/img/profile.jpg' %}">
+						<div class="photo d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white" style="width: 40px; height: 40px;">
+							<i class="la la-user" style="font-size: 20px;"></i>
 						</div>
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									Hizrian
-									<span class="user-level">administrator</span>
-									
-								</span>
+							<span>
+								Ahammed Sha
+								<span class="user-level">administrator</span>
+							</span>
 							</a>
-							
 						</div>
 					</div>
+
 					<ul class="nav">
 						<li class="nav-item active">
 							<a href="{% url 'home' %}">

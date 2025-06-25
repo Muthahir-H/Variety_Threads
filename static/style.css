@@ -42,7 +42,7 @@ body {
   --bs-secondary: #6c757d;
   --bs-black: #111;
   --bs-light: #F1F1F0;
-  --bs-dark: #212529;
+  --bs-dark: #101213;
   --bs-gray: #9aa1a7;
   --bs-gray-dark: #51565b;
 
@@ -57,6 +57,8 @@ body {
   --bs-link-decoration: underline;
   --bs-link-hover-color: #111;
   --bs-link-hover-color-rgb: 17, 17, 17;
+  --dark-color: #0a0a0a; /* darker than #101213 */
+
 }
 
 body {
